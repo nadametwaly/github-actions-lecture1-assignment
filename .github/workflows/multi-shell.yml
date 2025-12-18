@@ -15,6 +15,8 @@ jobs:
         shell: pwsh
         
       - name: Run with Python
-        run: python -c "print('Hello World from Python')"
+        run: |
+          print("Hello World from Python")
         shell: python
+
       

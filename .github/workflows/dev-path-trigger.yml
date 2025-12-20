@@ -1,0 +1,19 @@
+name: Branch and Path Filtering
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@4
+
+      - name: Notify trigger
+        run: |
+          echo "Workflow triggered because files in src/ were modified on dev branch."

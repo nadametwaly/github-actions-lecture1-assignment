@@ -18,7 +18,7 @@ jobs:
       - name: building and pushing
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./nodejs
           push: true
           tags: |
             docker.io/${{ vars.DOCKERHUB_USERNAME }}/nodejs:latest

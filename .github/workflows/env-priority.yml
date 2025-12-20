@@ -12,7 +12,7 @@ jobs:
       VAR_EXAMPLE: job-level
     steps:
       - name: Checkout repository
-        uses: actions/checkout@4
+        uses: actions/checkout@3
       - name: Step 1 - print variable
         run: echo "Step 1 value: $VAR_EXAMPLE"
       - name: Step 2 - override and print variable

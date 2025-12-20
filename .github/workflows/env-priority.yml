@@ -1,0 +1,26 @@
+name: Environment Variable Scopes & Priority
+on:
+  push:
+
+env: #pipeline/workflow env- lowest priority
+  VAR_EXAMPLE: workflow-level
+
+
+jobs:
+  test_env:
+    runs-on: ubuntu-latest
+    
+    env: #job env- medium priority
+      VAR_EXAMPLE: job-level
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@4
+
+      - name: Step 1 - print variable
+        run: echo "Step 1 value: $VAR_EXAMPLE"
+
+      - name: Step 2 - override and print variable
+        env: #step env- highest priority
+          VAR_EXAMPLE: step-level
+        run: echo "Step 2 value: $VAR_EXAMPLE"

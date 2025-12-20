@@ -1,0 +1,31 @@
+name: Parallel and Sequential Jobs
+
+on:
+  push:
+
+jobs:
+  job_a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job A
+        run: echo "Running Job A"
+
+  job_b:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job B
+        run: echo "Running Job B"
+
+  job_c:
+    needs: job_a
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job C
+        run: echo "Running Job C after Job A"
+
+  job_d:
+    needs: job_c
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job D
+        run: echo "Running Job D after Job C"

@@ -8,10 +8,8 @@ env: #pipeline/workflow env- lowest priority
 jobs:
   test_env:
     runs-on: ubuntu-latest
-
     env: #job env- medium priority
       VAR_EXAMPLE: job-level
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@4

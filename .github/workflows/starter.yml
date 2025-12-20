@@ -1,0 +1,11 @@
+name: my first workflow
+on:
+  push:
+jobs:
+  starter_job:
+    runs-on: ubuntu-latest    
+    steps:
+      - name: check out the repository code
+        uses: actions/checkout@v4
+      - name: Print directory listing
+        run: ls

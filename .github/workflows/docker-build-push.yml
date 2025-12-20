@@ -1,0 +1,23 @@
+name: Docker Build and Push
+on: 
+  push:
+    branchs:
+      - main
+
+jobs:
+  docker_build_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: authentication
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB-PASS }}
+      - name: building and pushing
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/myapp:latest
+            docker.io/${{ vars.DOCKERHUB_USERNAME }}/myapp:${{ github.sha }}

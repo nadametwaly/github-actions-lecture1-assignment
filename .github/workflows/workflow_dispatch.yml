@@ -1,0 +1,30 @@
+name: Workflow Dispatch (Manual Triggers)
+on:
+  Workflow_dispatch:
+    environment:
+      Description: 'Deployment environment'
+      Required: true
+      Default: 'staging'
+    deploy_type:
+      Description: 'Type of deployment'
+      Required: true
+      Type: choice
+      Options: ['full', 'partial']
+    dry_run:
+      Description: 'Run as dry run'
+      Required: false
+      Type: boolean
+      Default: false
+
+jobs:
+  print_the_three_input_values:
+    runs-on: ubuntu-latest
+    steps:
+      - name: three_input_values
+        run: |
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Deploy type: ${{ github.event.inputs.deploy_type }}"
+          echo "Dry run: ${{ github.event.inputs.dry_run }}"
+
+
+

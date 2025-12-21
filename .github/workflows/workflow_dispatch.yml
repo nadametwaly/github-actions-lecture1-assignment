@@ -1,20 +1,22 @@
 name: Workflow Dispatch (Manual Triggers)
 on:
-  Workflow_dispatch:
-    environment:
-      Description: 'Deployment environment'
-      Required: true
-      Default: 'staging'
-    deploy_type:
-      Description: 'Type of deployment'
-      Required: true
-      Type: choice
-      Options: ['full', 'partial']
-    dry_run:
-      Description: 'Run as dry run'
-      Required: false
-      Type: boolean
-      Default: false
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
+
+      deploy_type:
+        description: 'Type of deployment'
+        required: true
+        type: choice
+        options: ['full', 'partial']
+      dry_run:
+        description: 'Run as dry run'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   print_the_three_input_values:

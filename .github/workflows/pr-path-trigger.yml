@@ -1,0 +1,24 @@
+name: Pull Request with Path Filtering
+on:
+  pull_request:
+    branches:
+      -main
+    paths:
+      - 'src/**'
+
+jobs:
+  check-src-changes:
+    runs-on: ubuntu-latest
+
+    # Optional: skip if PR is not from 'stg'
+    if: github.head_ref == 'stg'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@4
+
+      - name: Print modified files
+        run: |
+          echo "PR from branch: ${{ github.head_ref }}"
+          git fetch origin main
+          git diff --name-only origin/main...${{ github.head_ref }}
